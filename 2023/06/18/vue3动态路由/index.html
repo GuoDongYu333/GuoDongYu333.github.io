@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"ri","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1.为什么使用动态路由写动态路由是为了配合权限使用，传统的静态路由虽然也可以做到根据权限的不同给用户展示不同的界面，但是要写大量的逻辑语句，太过于繁琐，随着身份的增多，判断的逻辑也越来越复杂，代码的复用性差。动态路由做到了根据权限的不同，向后端请求的数据也发生改变，前端避免了繁琐的逻辑，只专注于页面的设计，让前后端分工明确。 2.分析思路：动态路由的本质其实是后端在接收到前端登录请求时，根据请求负">
+  <meta name="description" content="1.为什么使用动态路由写动态路由是为了配合权限使用，传统的静态路由虽然也可以做到根据权限的不同给用户展示不同的界面，但是要写大量的逻辑语句，太过于繁琐，随着身份的增多，判断的逻辑也越来越复杂，代码的复用性差。动态路由做到了根据权限的不同，向后端请求的数据也发生改变，前端避免了繁琐的逻辑，只专注于页面的设计，让前后端分工明确。 2.分析思路：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue3动态路由">
 <meta property="og:url" content="http://example.com/2023/06/18/vue3%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1/index.html">
 <meta property="og:site_name" content="一夜暴富">
-<meta property="og:description" content="1.为什么使用动态路由写动态路由是为了配合权限使用，传统的静态路由虽然也可以做到根据权限的不同给用户展示不同的界面，但是要写大量的逻辑语句，太过于繁琐，随着身份的增多，判断的逻辑也越来越复杂，代码的复用性差。动态路由做到了根据权限的不同，向后端请求的数据也发生改变，前端避免了繁琐的逻辑，只专注于页面的设计，让前后端分工明确。 2.分析思路：动态路由的本质其实是后端在接收到前端登录请求时，根据请求负">
+<meta property="og:description" content="1.为什么使用动态路由写动态路由是为了配合权限使用，传统的静态路由虽然也可以做到根据权限的不同给用户展示不同的界面，但是要写大量的逻辑语句，太过于繁琐，随着身份的增多，判断的逻辑也越来越复杂，代码的复用性差。动态路由做到了根据权限的不同，向后端请求的数据也发生改变，前端避免了繁琐的逻辑，只专注于页面的设计，让前后端分工明确。 2.分析思路：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-18T08:21:55.000Z">
-<meta property="article:modified_time" content="2023-06-18T08:51:44.357Z">
+<meta property="article:modified_time" content="2023-06-19T04:34:16.358Z">
 <meta property="article:author" content="Cheer Up">
 <meta property="article:tag" content="--路由">
 <meta name="twitter:card" content="summary">
@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-06-18 16:21:55 / 修改时间：16:51:44" itemprop="dateCreated datePublished" datetime="2023-06-18T16:21:55+08:00">2023-06-18</time>
+              <time title="创建时间：2023-06-18 16:21:55" itemprop="dateCreated datePublished" datetime="2023-06-18T16:21:55+08:00">2023-06-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-19 12:34:16" itemprop="dateModified" datetime="2023-06-19T12:34:16+08:00">2023-06-19</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -244,7 +250,8 @@
 
       
         <h1 id="1-为什么使用动态路由"><a href="#1-为什么使用动态路由" class="headerlink" title="1.为什么使用动态路由"></a>1.为什么使用动态路由</h1><p>写动态路由是为了配合权限使用，传统的静态路由虽然也可以做到根据权限的不同给用户展示不同的界面，但是要写大量的逻辑语句，太过于繁琐，随着身份的增多，判断的逻辑也越来越复杂，代码的复用性差。动态路由做到了根据权限的不同，向后端请求的数据也发生改变，前端避免了繁琐的逻辑，只专注于页面的设计，让前后端分工明确。</p>
-<h1 id="2-分析思路："><a href="#2-分析思路：" class="headerlink" title="2.分析思路："></a>2.分析思路：</h1><p>动态路由的本质其实是后端在接收到前端登录请求时，根据请求负载数据的不同给前端返回不同的数据，前端解析后端发送来的数据后把他们解析成路由的格式，利用 vue-router 中的 addRoute 方法将他们添加到路由中去,从而实现不同的权限，不同的页面。动态路由的实现就牵扯到以下几个问题<br>1：addRoute方法的使用<br>2：在刷新界面时如何保证动态路由不会丢失</p>
+<h1 id="2-分析思路："><a href="#2-分析思路：" class="headerlink" title="2.分析思路："></a>2.分析思路：</h1><span id="more"></span>
+<p>动态路由的本质其实是后端在接收到前端登录请求时，根据请求负载数据的不同给前端返回不同的数据，前端解析后端发送来的数据后把他们解析成路由的格式，利用 vue-router 中的 addRoute 方法将他们添加到路由中去,从而实现不同的权限，不同的页面。动态路由的实现就牵扯到以下几个问题<br>1：addRoute方法的使用<br>2：在刷新界面时如何保证动态路由不会丢失</p>
 <h1 id="3-问题解决"><a href="#3-问题解决" class="headerlink" title="3.问题解决"></a>3.问题解决</h1>
     </div>
 
